@@ -12,3 +12,7 @@ class CombinationSerializer(serializers.ModelSerializer):
             'is_deleted': {'read_only': True},
         }
         
+class SimpleCombinationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Combination
+        fields = ('value', 'id')

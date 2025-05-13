@@ -1,14 +1,25 @@
 from .base_viewset import BaseViewSet
 from game.models import GameSchedule
-from game.api.serializers import BaseGameScheduleSerializer
+from game.api.serializers import BaseGameScheduleSerializer, CreateGameScheduleRequest
 from django.http import JsonResponse
 from django.db import transaction
 from rest_framework.decorators import action
 from rest_framework import status
+from drf_spectacular.utils import extend_schema
 
 class GameScheduleViewset(BaseViewSet):
     queryset = GameSchedule.objects.all()
     serializer_class = BaseGameScheduleSerializer
+        
+
+    @extend_schema(request=CreateGameScheduleRequest, responses=BaseGameScheduleSerializer)
+    def create(self, request):
+        serializer = CreateGameScheduleRequest(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        instance = serializer.save()
+        output_serializer = BaseGameScheduleSerializer(instance)
+        return JsonResponse(output_serializer.data, status=status.HTTP_201_CREATED)
+
 
     @action(detail=False, methods=['get'], url_path='daily')
     def get_game_schedule_daily(self, request):

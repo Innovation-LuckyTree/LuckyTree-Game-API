@@ -11,3 +11,8 @@ class BaseGameScheduleSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'is_deleted': {'read_only': True},
         }
+
+class CreateGameScheduleRequest(serializers.ModelSerializer):
+    class Meta:
+        model = GameSchedule
+        fields = ('created_by', 'updated_by', 'date', 'status', 'draw_schedule')
