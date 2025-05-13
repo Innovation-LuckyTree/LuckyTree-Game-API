@@ -1,7 +1,7 @@
-from rest_framework import serializers
+from .base_serializer import BaseModelSerializer
 from game.models import Result
 
-class BaseResultSerializer(serializers.ModelSerializer):
+class BaseResultSerializer(BaseModelSerializer):
     """
     Base serializer for the Result model.
     """

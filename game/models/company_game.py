@@ -24,4 +24,4 @@ class CompanyGame(AuditedModel):
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return self.title

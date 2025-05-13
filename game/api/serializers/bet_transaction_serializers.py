@@ -1,7 +1,7 @@
-from rest_framework import serializers
+from .base_serializer import BaseModelSerializer
 from game.models import BetTransaction
 
-class BaseBetTransactionSerializer(serializers.ModelSerializer):
+class BaseBetTransactionSerializer(BaseModelSerializer):
     """
     Base serializer for the BetTransaction model.
     """

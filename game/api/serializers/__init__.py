@@ -1,3 +1,4 @@
+from .base_serializer import *
 from .game_serializers import *
 from .company_game_serializers import *
 from .draw_schedule_serializers import *

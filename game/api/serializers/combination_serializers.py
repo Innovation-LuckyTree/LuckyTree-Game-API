@@ -1,7 +1,7 @@
-from rest_framework import serializers
+from .base_serializer import BaseModelSerializer
 from game.models import Combination
 
-class CombinationSerializer(serializers.ModelSerializer):
+class CombinationSerializer(BaseModelSerializer):
     """
     Base serializer for the Combination model.
     """

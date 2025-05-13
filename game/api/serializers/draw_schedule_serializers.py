@@ -1,7 +1,7 @@
-from rest_framework import serializers
+from .base_serializer import BaseModelSerializer
 from game.models import DrawSchedule
 
-class BaseDrawScheduleSerializer(serializers.ModelSerializer):
+class BaseDrawScheduleSerializer(BaseModelSerializer):
     """
     Serializer for the DrawSchedule model.
     """

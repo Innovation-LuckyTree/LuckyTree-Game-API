@@ -1,7 +1,7 @@
-from rest_framework import serializers
+from .base_serializer import BaseModelSerializer
 from game.models import Winner
 
-class BaseWinnerSerializer(serializers.ModelSerializer):
+class BaseWinnerSerializer(BaseModelSerializer):
     """
     Base serializer for the Winner model.
     """

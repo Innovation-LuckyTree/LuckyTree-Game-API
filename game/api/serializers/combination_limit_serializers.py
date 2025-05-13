@@ -1,7 +1,7 @@
-from rest_framework import serializers
+from .base_serializer import BaseModelSerializer
 from game.models import CombinationLimit
 
-class BaseCombinationLimitSerializer(serializers.ModelSerializer):
+class BaseCombinationLimitSerializer(BaseModelSerializer):
     """
     Base serializer for the CombinationLimit model.
     """
