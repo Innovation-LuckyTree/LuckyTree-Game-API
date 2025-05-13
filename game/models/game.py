@@ -7,6 +7,7 @@ class Game(TimeStampedModel):
     name = models.CharField(max_length=255)
     is_deleted = models.BooleanField(default=False)
     digits = models.IntegerField(default=3)
+    default_mechanics = models.JSONField("Default Game Mechanics", blank=True, null=True)
 
     def __str__(self):
         return self.name

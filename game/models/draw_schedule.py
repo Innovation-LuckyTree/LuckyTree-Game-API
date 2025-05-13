@@ -11,8 +11,8 @@ class DrawSchedule(AuditedModel):
     id = models.AutoField(primary_key=True)
     company_game = models.ForeignKey(CompanyGame, on_delete=models.CASCADE, related_name="draw_schedules")
     name = models.CharField(max_length=255, default="DrawSchedule")
-    cutoff_time = models.BigIntegerField()
-    open_time = models.BigIntegerField()
+    cutoff_end = models.TimeField()
+    cutoff_start = models.TimeField()
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):

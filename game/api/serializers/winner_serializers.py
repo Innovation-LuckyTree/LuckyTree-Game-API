@@ -1,10 +1,13 @@
-from .base_serializer import BaseModelSerializer
+from rest_framework import serializers
 from game.models import Winner
 
-class BaseWinnerSerializer(BaseModelSerializer):
+class BaseWinnerSerializer(serializers.ModelSerializer):
     """
     Base serializer for the Winner model.
     """
     class Meta:
         model = Winner
         fields = '__all__'
+        extra_kwargs = {
+            'is_deleted': {'read_only': True},
+        }

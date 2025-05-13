@@ -1,11 +1,14 @@
-from .base_serializer import BaseModelSerializer
+from rest_framework import serializers
 from game.models import Combination
 
-class CombinationSerializer(BaseModelSerializer):
+class CombinationSerializer(serializers.ModelSerializer):
     """
     Base serializer for the Combination model.
     """
     class Meta:
         model = Combination
         fields = '__all__'  
+        extra_kwargs = {
+            'is_deleted': {'read_only': True},
+        }
         

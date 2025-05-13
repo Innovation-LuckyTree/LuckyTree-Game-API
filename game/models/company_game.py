@@ -10,9 +10,6 @@ class CompanyGame(AuditedModel):
         "rumbleLimit": int
     }
     """
-    
-    def game_mechanics_default():
-        return {"winAmount": 600, "straightLimit": 200, "rumbleLimit": 200}
 
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
@@ -20,8 +17,13 @@ class CompanyGame(AuditedModel):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="company_games")
     description = models.TextField()
     is_playable = models.BooleanField(default=True)
-    mechanics = models.JSONField("Game Mechanics", default=game_mechanics_default)
+    mechanics = models.JSONField("Game Mechanics", blank=True, null=True)
     is_deleted = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if self.mechanics is None and self.game:
+            self.mechanics = self.game.default_mechanics
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
