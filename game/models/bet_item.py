@@ -17,4 +17,4 @@ class BetItem(TimeStampedModel):
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"BetItem {self.id} - Transaction {self.bet_transaction.id} - Amount {self.amount}"
+        return f"BetItem {self.id} - Transaction {self.bet_transaction.id}"

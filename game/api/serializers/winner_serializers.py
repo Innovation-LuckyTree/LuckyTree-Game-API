@@ -11,3 +11,10 @@ class BaseWinnerSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'is_deleted': {'read_only': True},
         }
+
+class SimpleWinnerSerializer(serializers.ModelSerializer):
+    
+    user_id = serializers.IntegerField(source='bet_item.bet_transaction.user_id')
+    class Meta:
+        model = Winner
+        fields = ('id', 'win_amount', 'rumble_amount', 'bet_item', 'user_id')

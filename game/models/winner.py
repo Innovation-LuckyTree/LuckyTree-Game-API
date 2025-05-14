@@ -11,8 +11,8 @@ class Winner(TimeStampedModel):
     id = models.AutoField(primary_key=True)
     bet_item = models.ForeignKey(BetItem, on_delete=models.CASCADE, related_name="winners")
     result = models.ForeignKey(Result, on_delete=models.CASCADE, related_name="winners")
-    win_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    rumble_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    win_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    rumble_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
