@@ -17,6 +17,6 @@ class BetTransactionViewset(BaseViewSet):
         serializer = BetTransactionCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        response = BetTransactionCreateSerializer(BetTransaction.objects.filter(pk=next_id).prefetch_related('bet_items').first()) # refactor if possible, only for return of object purposes
+        response = BaseBetTransactionSerializer(BetTransaction.objects.filter(pk=next_id).prefetch_related('bet_items').first())
 
         return JsonResponse(data=response.data, status=status.HTTP_201_CREATED, safe=False)

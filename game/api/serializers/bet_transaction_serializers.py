@@ -1,11 +1,12 @@
 from rest_framework import serializers
 from game.models import BetTransaction, BetItem
-from .bet_item_serializers import SimpleBetItemCreateSerializer
+from .bet_item_serializers import SimpleBetItemCreateSerializer, SimpleBetItemSerializer
 
 class BaseBetTransactionSerializer(serializers.ModelSerializer):
     """
     Base serializer for the BetTransaction model.
     """
+    bet_items = SimpleBetItemSerializer(many=True)
     class Meta:
         model = BetTransaction
         fields = '__all__'

@@ -6,13 +6,20 @@ class BaseBetItemSerializer(serializers.ModelSerializer):
     """
     Base serializer for the BetItem model.
     """
-    combination = SimpleCombinationSerializer()
+    combination = serializers.CharField(source='combination.value')
     class Meta:
         model = BetItem
         fields = '__all__'
         extra_kwargs = {
             'is_deleted': {'read_only': True},
         }
+
+
+class SimpleBetItemSerializer(serializers.ModelSerializer):
+    combination = serializers.CharField(source='combination.value')
+    class Meta:
+        model = BetItem
+        fields=('combination', 'straightAmount', 'rumbleAmount',)
 
 class SimpleBetItemCreateSerializer(serializers.ModelSerializer):
     combination = serializers.CharField() 

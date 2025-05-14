@@ -15,4 +15,8 @@ class BaseGameScheduleSerializer(serializers.ModelSerializer):
 class CreateGameScheduleRequest(serializers.ModelSerializer):
     class Meta:
         model = GameSchedule
-        fields = ('created_by', 'updated_by', 'date', 'status', 'draw_schedule')
+        fields = ('created_by', 'date', 'status', 'draw_schedule')
+
+    def create(self, validated_data):
+        validated_data['updated_by'] = validated_data['created_by']
+        return GameSchedule.objects.create(**validated_data)

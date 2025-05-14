@@ -1,7 +1,7 @@
 import psycopg2
 from itertools import product
 
-# Connect to PostgreSQL
+# Connect to our DB, update connection appropriately
 conn = psycopg2.connect(
     dbname="lucky3-game",
     user="postgres",
@@ -11,13 +11,14 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-# Generate all combinations: 000 to 999 in "x-x-x" format
+# Use to generate all combinations: 0-0-0 to 9-9-9
 values = [f"{a}-{b}-{c}" for a, b, c in product(range(10), repeat=3)]
 
-# Prepare data for batch insert
+# Use to generate all combinations: 0-0 to 9-9
+# values = [f"{a}-{b}" for a, b in product(range(10), repeat=2)]
+
 data = [(v,False) for v in values]
 
-# Insert into Combinations table (assuming it has a `value` field)
 insert_query = "INSERT INTO game_combination (value, is_deleted) VALUES (%s, %s)"
 cur.executemany(insert_query, data)
 
